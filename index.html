@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>GEROSO ELECTRONICS | Innovación a tu alcance</title>
+    <style>
+        /* Estilos Generales */
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            margin: 0;
+            padding: 0;
+            background-color: #0f172a;
+            color: #f8fafc;
+        }
+
+        /* Navegación */
+        nav {
+            background-color: #1e293b;
+            padding: 1rem 2rem;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 2px solid #38bdf8;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: bold;
+            color: #38bdf8;
+            letter-spacing: 2px;
+        }
+
+        /* Hero Section */
+        .hero {
+            text-align: center;
+            padding: 100px 20px;
+            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
+                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000');
+            background-size: cover;
+            background-position: center;
+        }
+
+        .hero h1 {
+            font-size: 3rem;
+            margin-bottom: 10px;
+        }
+
+        .hero p {
+            font-size: 1.2rem;
+            color: #94a3b8;
+        }
+
+        /* Contenedor de Servicios/Productos */
+        .container {
+            max-width: 1000px;
+            margin: 50px auto;
+            padding: 0 20px;
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 20px;
+        }
+
+        .card {
+            background-color: #1e293b;
+            padding: 20px;
+            border-radius: 10px;
+            text-align: center;
+            transition: transform 0.3s;
+            border: 1px solid #334155;
+        }
+
+        .card:hover {
+            transform: translateY(-10px);
+            border-color: #38bdf8;
+        }
+
+        footer {
+            text-align: center;
+            padding: 40px;
+            background-color: #020617;
+            color: #64748b;
+            font-size: 0.9rem;
+        }
+
+        .btn {
+            background-color: #38bdf8;
+            color: #0f172a;
+            padding: 10px 25px;
+            text-decoration: none;
+            border-radius: 5px;
+            font-weight: bold;
+            display: inline-block;
+            margin-top: 20px;
+        }
+    </style>
+</head>
+<body>
+
+    <nav>
+        <div class="logo">GEROSO ELECTRONICS</div>
+        <div>Inicio | Servicios | Contacto</div>
+    </nav>
+
+    <header class="hero">
+        <h1>Bienvenidos a GEROSO ELECTRONICS</h1>
+        <p>Soluciones tecnológicas y componentes de vanguardia.</p>
+        <a href="#contacto" class="btn">Explorar Proyectos</a>
+    </header>
+
+    <div class="container">
+        <div class="card">
+            <h3>Reparación</h3>
+            <p>Diagnóstico y mantenimiento de equipos electrónicos con precisión profesional.</p>
+        </div>
+        <div class="card">
+            <h3>Diseño de Circuitos</h3>
+            <p>Creación de prototipos y placas personalizadas para tus ideas.</p>
+        </div>
+        <div class="card">
+            <h3>Componentes</h3>
+            <p>Venta y distribución de las mejores marcas del mercado tecnológico.</p>
+        </div>
+    </div>
+
+    <footer id="contacto">
+        <p>&copy; 2026 GEROSO ELECTRONICS. Casi todos los derechos reservados.</p>
+        <p>Email: contacto@geroso-electronics.com</p>
+    </footer>
+
+</body>
+</html>
