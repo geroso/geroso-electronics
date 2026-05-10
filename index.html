@@ -1,132 +1,1047 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>GEROSO ELECTRONICS | Innovación a tu alcance</title>
-    <style>
-        /* Estilos Generales */
-        body {
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
-            margin: 0;
-            padding: 0;
-            background-color: #0f172a;
-            color: #f8fafc;
-        }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>GEROSO Electronics | Tecnología Electrónica - Buga, Colombia</title>
+  <meta name="description" content="Ingeniería electrónica especializada en diseño y fabricación de bombillas LED, circuitos electrónicos y lámparas decorativas. Buga, Colombia." />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@400;600;700;900&family=Exo+2:wght@300;400;500;600&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
-        /* Navegación */
-        nav {
-            background-color: #1e293b;
-            padding: 1rem 2rem;
-            display: flex;
-            justify-content: space-between;
-            align-items: center;
-            border-bottom: 2px solid #38bdf8;
-        }
+    :root {
+      --blue:    #00c8ff;
+      --blue-dk: #0077aa;
+      --orange:  #f5a623;
+      --bg:      #070c18;
+      --bg2:     #0d1526;
+      --card:    #111d33;
+      --border:  #1e3050;
+      --text:    #c8d8f0;
+      --white:   #ffffff;
+    }
 
-        .logo {
-            font-size: 1.5rem;
-            font-weight: bold;
-            color: #38bdf8;
-            letter-spacing: 2px;
-        }
+    html { scroll-behavior: smooth; }
 
-        /* Hero Section */
-        .hero {
-            text-align: center;
-            padding: 100px 20px;
-            background: linear-gradient(rgba(15, 23, 42, 0.8), rgba(15, 23, 42, 0.8)), 
-                        url('https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&q=80&w=1000');
-            background-size: cover;
-            background-position: center;
-        }
+    body {
+      font-family: 'Exo 2', sans-serif;
+      background: var(--bg);
+      color: var(--text);
+      overflow-x: hidden;
+    }
 
-        .hero h1 {
-            font-size: 3rem;
-            margin-bottom: 10px;
-        }
+    /* ── SCROLLBAR ── */
+    ::-webkit-scrollbar { width: 6px; }
+    ::-webkit-scrollbar-track { background: var(--bg); }
+    ::-webkit-scrollbar-thumb { background: var(--blue-dk); border-radius: 3px; }
 
-        .hero p {
-            font-size: 1.2rem;
-            color: #94a3b8;
-        }
+    /* ══════════════════════════════════════════
+       NAV
+    ══════════════════════════════════════════ */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 5%;
+      height: 70px;
+      background: rgba(7, 12, 24, 0.85);
+      backdrop-filter: blur(16px);
+      border-bottom: 1px solid rgba(0,200,255,0.12);
+      transition: background .3s;
+    }
+    .nav-logo {
+      display: flex; align-items: center; gap: 12px;
+      text-decoration: none;
+    }
+    .nav-logo img {
+      height: 44px; width: 44px; border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--blue);
+    }
+    .nav-logo-text {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.1rem; font-weight: 700;
+      color: var(--white);
+      letter-spacing: 1px;
+      line-height: 1.1;
+    }
+    .nav-logo-text span { color: var(--blue); }
+    .nav-logo-sub {
+      font-size: 0.6rem; font-weight: 400;
+      color: var(--orange); letter-spacing: 2px; text-transform: uppercase;
+    }
+    .nav-links {
+      display: flex; gap: 32px; list-style: none;
+    }
+    .nav-links a {
+      color: var(--text); text-decoration: none;
+      font-size: .88rem; font-weight: 500; letter-spacing: .5px;
+      transition: color .2s;
+      position: relative;
+    }
+    .nav-links a::after {
+      content: ''; position: absolute; bottom: -4px; left: 0; right: 0;
+      height: 2px; background: var(--blue); transform: scaleX(0);
+      transition: transform .2s;
+    }
+    .nav-links a:hover { color: var(--blue); }
+    .nav-links a:hover::after { transform: scaleX(1); }
+    .nav-cta {
+      background: var(--blue); color: var(--bg) !important;
+      padding: 8px 20px; border-radius: 6px; font-weight: 600 !important;
+      transition: background .2s, transform .2s !important;
+    }
+    .nav-cta:hover { background: var(--orange) !important; transform: translateY(-1px); }
+    .nav-cta::after { display: none !important; }
 
-        /* Contenedor de Servicios/Productos */
-        .container {
-            max-width: 1000px;
-            margin: 50px auto;
-            padding: 0 20px;
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 20px;
-        }
+    /* hamburger */
+    .hamburger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+    .hamburger span { display: block; width: 26px; height: 2px; background: var(--blue); border-radius: 2px; transition: .3s; }
 
-        .card {
-            background-color: #1e293b;
-            padding: 20px;
-            border-radius: 10px;
-            text-align: center;
-            transition: transform 0.3s;
-            border: 1px solid #334155;
-        }
+    /* ══════════════════════════════════════════
+       HERO
+    ══════════════════════════════════════════ */
+    #hero {
+      position: relative; min-height: 100vh;
+      display: flex; align-items: center; justify-content: center;
+      overflow: hidden;
+    }
+    #circuit-canvas {
+      position: absolute; inset: 0; width: 100%; height: 100%;
+    }
+    .hero-overlay {
+      position: absolute; inset: 0;
+      background: radial-gradient(ellipse at 50% 40%, rgba(0,120,200,.18) 0%, transparent 70%);
+    }
+    .hero-content {
+      position: relative; z-index: 2;
+      text-align: center; padding: 0 20px; max-width: 900px;
+    }
+    .hero-badge {
+      display: inline-block;
+      background: rgba(0,200,255,.1); border: 1px solid rgba(0,200,255,.3);
+      color: var(--blue); font-size: .78rem; letter-spacing: 3px;
+      text-transform: uppercase; padding: 6px 18px; border-radius: 30px;
+      margin-bottom: 28px;
+      animation: fadeDown .8s ease both;
+    }
+    .hero-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(2.4rem, 6vw, 5rem);
+      font-weight: 900; line-height: 1.1;
+      color: var(--white);
+      animation: fadeDown .8s .15s ease both;
+    }
+    .hero-title .accent { color: var(--blue); }
+    .hero-title .accent-o { color: var(--orange); }
+    .hero-sub {
+      margin-top: 20px;
+      font-size: clamp(1rem, 2vw, 1.25rem);
+      font-weight: 300; color: var(--text);
+      line-height: 1.6;
+      animation: fadeDown .8s .3s ease both;
+    }
+    .hero-buttons {
+      margin-top: 40px; display: flex; gap: 16px; justify-content: center; flex-wrap: wrap;
+      animation: fadeDown .8s .45s ease both;
+    }
+    .btn {
+      display: inline-flex; align-items: center; gap: 8px;
+      padding: 14px 34px; border-radius: 8px;
+      font-family: 'Exo 2', sans-serif; font-size: .95rem; font-weight: 600;
+      text-decoration: none; cursor: pointer; border: none;
+      transition: transform .2s, box-shadow .2s;
+    }
+    .btn:hover { transform: translateY(-3px); }
+    .btn-primary {
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: var(--white);
+      box-shadow: 0 4px 20px rgba(0,200,255,.35);
+    }
+    .btn-primary:hover { box-shadow: 0 8px 30px rgba(0,200,255,.5); }
+    .btn-outline {
+      background: transparent; color: var(--white);
+      border: 1.5px solid rgba(255,255,255,.25);
+    }
+    .btn-outline:hover { border-color: var(--orange); color: var(--orange); }
+    .hero-scroll {
+      position: absolute; bottom: 32px; left: 50%; transform: translateX(-50%);
+      z-index: 2; display: flex; flex-direction: column; align-items: center; gap: 6px;
+      animation: fadeDown .8s .6s ease both;
+    }
+    .hero-scroll span { font-size: .72rem; letter-spacing: 2px; color: rgba(200,216,240,.5); text-transform: uppercase; }
+    .scroll-arrow { width: 20px; height: 20px; border-right: 2px solid var(--blue); border-bottom: 2px solid var(--blue); transform: rotate(45deg); animation: bounce 1.4s infinite; }
 
-        .card:hover {
-            transform: translateY(-10px);
-            border-color: #38bdf8;
-        }
+    /* ══════════════════════════════════════════
+       SECTIONS COMMON
+    ══════════════════════════════════════════ */
+    section { padding: 100px 5%; }
+    .section-label {
+      display: inline-block;
+      font-size: .72rem; letter-spacing: 3px; text-transform: uppercase;
+      color: var(--blue); font-weight: 600; margin-bottom: 14px;
+    }
+    .section-title {
+      font-family: 'Orbitron', sans-serif;
+      font-size: clamp(1.6rem, 3vw, 2.4rem);
+      font-weight: 700; color: var(--white); line-height: 1.2;
+    }
+    .section-title .accent { color: var(--blue); }
+    .section-title .accent-o { color: var(--orange); }
+    .section-desc {
+      margin-top: 14px; max-width: 560px;
+      font-size: 1rem; line-height: 1.7; color: var(--text);
+    }
+    .divider {
+      width: 60px; height: 3px; margin: 20px 0;
+      background: linear-gradient(90deg, var(--blue), var(--orange));
+      border-radius: 2px;
+    }
 
-        footer {
-            text-align: center;
-            padding: 40px;
-            background-color: #020617;
-            color: #64748b;
-            font-size: 0.9rem;
-        }
+    /* ══════════════════════════════════════════
+       NOSOTROS
+    ══════════════════════════════════════════ */
+    #nosotros {
+      background: var(--bg2);
+    }
+    .about-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; align-items: center; margin-top: 60px;
+    }
+    .about-img-wrap {
+      position: relative;
+    }
+    .about-img-wrap img {
+      width: 100%; border-radius: 16px;
+      border: 1px solid var(--border);
+      object-fit: cover;
+      filter: brightness(.9) contrast(1.05) saturate(1.1);
+    }
+    .about-badge {
+      position: absolute; bottom: -20px; right: -20px;
+      background: var(--bg); border: 1px solid var(--border);
+      border-radius: 14px; padding: 16px 24px;
+      text-align: center;
+      box-shadow: 0 8px 32px rgba(0,0,0,.5);
+    }
+    .about-badge .num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 2rem; font-weight: 900; color: var(--blue);
+    }
+    .about-badge .lbl {
+      font-size: .72rem; letter-spacing: 1px; color: var(--text);
+    }
+    .about-stats {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 20px; margin-top: 36px;
+    }
+    .stat-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 12px; padding: 20px;
+    }
+    .stat-card .num {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1.6rem; font-weight: 700; color: var(--blue);
+    }
+    .stat-card .lbl { font-size: .8rem; color: var(--text); margin-top: 4px; }
 
-        .btn {
-            background-color: #38bdf8;
-            color: #0f172a;
-            padding: 10px 25px;
-            text-decoration: none;
-            border-radius: 5px;
-            font-weight: bold;
-            display: inline-block;
-            margin-top: 20px;
-        }
-    </style>
+    /* ══════════════════════════════════════════
+       SERVICIOS
+    ══════════════════════════════════════════ */
+    #servicios { background: var(--bg); }
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 24px; margin-top: 60px;
+    }
+    .service-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 32px 28px;
+      transition: transform .3s, border-color .3s, box-shadow .3s;
+      position: relative; overflow: hidden;
+    }
+    .service-card::before {
+      content: ''; position: absolute; inset: 0;
+      background: linear-gradient(135deg, rgba(0,200,255,.06) 0%, transparent 60%);
+      opacity: 0; transition: opacity .3s;
+    }
+    .service-card:hover { transform: translateY(-8px); border-color: rgba(0,200,255,.4); box-shadow: 0 16px 48px rgba(0,200,255,.12); }
+    .service-card:hover::before { opacity: 1; }
+    .service-icon {
+      font-size: 2.4rem; margin-bottom: 20px;
+      display: flex; align-items: center; justify-content: center;
+      width: 64px; height: 64px;
+      background: rgba(0,200,255,.08); border: 1px solid rgba(0,200,255,.2);
+      border-radius: 14px;
+    }
+    .service-card h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      color: var(--white); margin-bottom: 10px;
+    }
+    .service-card p { font-size: .88rem; line-height: 1.65; color: var(--text); }
+    .service-tag {
+      display: inline-block; margin-top: 16px;
+      font-size: .7rem; letter-spacing: 1.5px; text-transform: uppercase;
+      color: var(--orange); font-weight: 600;
+    }
+
+    /* ══════════════════════════════════════════
+       GALERÍA
+    ══════════════════════════════════════════ */
+    #galeria { background: var(--bg2); }
+    .gallery-filters {
+      display: flex; gap: 10px; flex-wrap: wrap; margin-top: 40px; margin-bottom: 32px;
+    }
+    .filter-btn {
+      padding: 8px 20px; border-radius: 30px; border: 1px solid var(--border);
+      background: transparent; color: var(--text);
+      font-family: 'Exo 2', sans-serif; font-size: .82rem; font-weight: 500;
+      cursor: pointer; transition: .2s;
+    }
+    .filter-btn.active, .filter-btn:hover {
+      background: var(--blue); color: var(--bg); border-color: var(--blue);
+    }
+    .gallery-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+      gap: 16px;
+    }
+    .gallery-item {
+      position: relative; border-radius: 12px; overflow: hidden;
+      aspect-ratio: 4/3; cursor: pointer;
+      border: 1px solid var(--border);
+      transition: transform .3s, box-shadow .3s;
+    }
+    .gallery-item:hover { transform: scale(1.02); box-shadow: 0 12px 36px rgba(0,200,255,.2); }
+    .gallery-item img {
+      width: 100%; height: 100%; object-fit: cover;
+      transition: transform .4s;
+    }
+    .gallery-item:hover img { transform: scale(1.06); }
+    .gallery-caption {
+      position: absolute; bottom: 0; left: 0; right: 0;
+      padding: 24px 16px 14px;
+      background: linear-gradient(transparent, rgba(7,12,24,.9));
+      font-size: .8rem; font-weight: 500; color: var(--white);
+      letter-spacing: .5px;
+      transform: translateY(100%); transition: transform .3s;
+    }
+    .gallery-item:hover .gallery-caption { transform: translateY(0); }
+    .gallery-zoom {
+      position: absolute; top: 12px; right: 12px;
+      width: 32px; height: 32px; border-radius: 50%;
+      background: rgba(0,200,255,.2); backdrop-filter: blur(8px);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; opacity: 0; transition: opacity .3s;
+    }
+    .gallery-item:hover .gallery-zoom { opacity: 1; }
+
+    /* lightbox */
+    #lightbox {
+      position: fixed; inset: 0; z-index: 2000;
+      background: rgba(7,12,24,.96); backdrop-filter: blur(8px);
+      display: none; align-items: center; justify-content: center;
+    }
+    #lightbox.open { display: flex; }
+    #lightbox img {
+      max-width: 90vw; max-height: 88vh;
+      border-radius: 12px; border: 1px solid var(--border);
+      box-shadow: 0 24px 80px rgba(0,0,0,.8);
+    }
+    #lightbox-close {
+      position: absolute; top: 20px; right: 24px;
+      font-size: 2rem; color: var(--text); cursor: pointer;
+      transition: color .2s;
+    }
+    #lightbox-close:hover { color: var(--blue); }
+    #lightbox-caption {
+      position: absolute; bottom: 24px; left: 50%; transform: translateX(-50%);
+      font-size: .85rem; color: var(--text); letter-spacing: 1px;
+      background: rgba(0,0,0,.5); padding: 8px 20px; border-radius: 30px;
+    }
+
+    /* ══════════════════════════════════════════
+       PROCESO
+    ══════════════════════════════════════════ */
+    #proceso { background: var(--bg); }
+    .process-steps {
+      display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+      gap: 0; margin-top: 60px; position: relative;
+    }
+    .process-steps::before {
+      content: ''; position: absolute; top: 36px; left: 10%; right: 10%;
+      height: 1px; background: linear-gradient(90deg, transparent, var(--border), var(--border), transparent);
+    }
+    .step {
+      display: flex; flex-direction: column; align-items: center;
+      text-align: center; padding: 0 20px;
+    }
+    .step-num {
+      width: 72px; height: 72px; border-radius: 50%;
+      background: var(--card); border: 2px solid var(--blue);
+      display: flex; align-items: center; justify-content: center;
+      font-family: 'Orbitron', sans-serif; font-size: 1.4rem; font-weight: 700;
+      color: var(--blue); margin-bottom: 20px;
+      box-shadow: 0 0 24px rgba(0,200,255,.2);
+      position: relative; z-index: 1;
+    }
+    .step h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .82rem; font-weight: 700; color: var(--white); margin-bottom: 8px;
+    }
+    .step p { font-size: .8rem; line-height: 1.6; color: var(--text); }
+
+    /* ══════════════════════════════════════════
+       CONTACTO
+    ══════════════════════════════════════════ */
+    #contacto { background: var(--bg2); }
+    .contact-grid {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 60px; margin-top: 60px; align-items: start;
+    }
+    .contact-info-list { list-style: none; margin-top: 30px; display: flex; flex-direction: column; gap: 20px; }
+    .contact-info-list li {
+      display: flex; align-items: flex-start; gap: 16px;
+    }
+    .contact-icon {
+      width: 44px; height: 44px; border-radius: 10px; flex-shrink: 0;
+      background: rgba(0,200,255,.08); border: 1px solid rgba(0,200,255,.2);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1.2rem;
+    }
+    .contact-info-list .lbl { font-size: .72rem; letter-spacing: 1px; color: var(--blue); text-transform: uppercase; margin-bottom: 2px; }
+    .contact-info-list .val { font-size: .95rem; color: var(--white); font-weight: 500; }
+
+    .contact-form {
+      background: var(--card); border: 1px solid var(--border);
+      border-radius: 16px; padding: 36px;
+    }
+    .contact-form h3 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: 1rem; font-weight: 700; color: var(--white); margin-bottom: 24px;
+    }
+    .form-group { margin-bottom: 18px; }
+    .form-group label { display: block; font-size: .8rem; letter-spacing: .5px; color: var(--text); margin-bottom: 7px; }
+    .form-group input,
+    .form-group textarea,
+    .form-group select {
+      width: 100%; background: var(--bg2); border: 1px solid var(--border);
+      border-radius: 8px; padding: 12px 16px;
+      color: var(--white); font-family: 'Exo 2', sans-serif; font-size: .9rem;
+      transition: border-color .2s;
+      outline: none;
+    }
+    .form-group input:focus,
+    .form-group textarea:focus,
+    .form-group select:focus { border-color: var(--blue); }
+    .form-group textarea { resize: vertical; min-height: 120px; }
+    .form-group select option { background: var(--bg2); }
+    .btn-submit {
+      width: 100%; padding: 14px;
+      background: linear-gradient(135deg, var(--blue) 0%, var(--blue-dk) 100%);
+      color: var(--white); border: none; border-radius: 8px;
+      font-family: 'Exo 2', sans-serif; font-size: .95rem; font-weight: 600;
+      cursor: pointer; transition: opacity .2s, transform .2s;
+      letter-spacing: .5px;
+    }
+    .btn-submit:hover { opacity: .88; transform: translateY(-2px); }
+
+    /* ══════════════════════════════════════════
+       FOOTER
+    ══════════════════════════════════════════ */
+    footer {
+      background: #04080f;
+      border-top: 1px solid var(--border);
+      padding: 48px 5% 28px;
+    }
+    .footer-top {
+      display: grid; grid-template-columns: 2fr 1fr 1fr;
+      gap: 48px; padding-bottom: 40px;
+      border-bottom: 1px solid var(--border);
+    }
+    .footer-brand img { height: 60px; margin-bottom: 16px; }
+    .footer-brand p { font-size: .85rem; line-height: 1.7; color: var(--text); max-width: 280px; }
+    .footer-col h4 {
+      font-family: 'Orbitron', sans-serif;
+      font-size: .78rem; font-weight: 700; color: var(--blue);
+      letter-spacing: 1.5px; text-transform: uppercase; margin-bottom: 18px;
+    }
+    .footer-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+    .footer-col ul a { text-decoration: none; color: var(--text); font-size: .85rem; transition: color .2s; }
+    .footer-col ul a:hover { color: var(--blue); }
+    .footer-bottom {
+      display: flex; justify-content: space-between; align-items: center;
+      padding-top: 24px; flex-wrap: wrap; gap: 12px;
+    }
+    .footer-bottom p { font-size: .78rem; color: rgba(200,216,240,.45); }
+    .footer-bottom span { color: var(--orange); }
+    .social-links { display: flex; gap: 12px; }
+    .social-links a {
+      width: 36px; height: 36px; border-radius: 8px;
+      background: var(--card); border: 1px solid var(--border);
+      display: flex; align-items: center; justify-content: center;
+      font-size: 1rem; text-decoration: none;
+      transition: border-color .2s, background .2s;
+    }
+    .social-links a:hover { border-color: var(--blue); background: rgba(0,200,255,.1); }
+
+    /* ══════════════════════════════════════════
+       ANIMATIONS
+    ══════════════════════════════════════════ */
+    @keyframes fadeDown {
+      from { opacity: 0; transform: translateY(-20px); }
+      to   { opacity: 1; transform: translateY(0); }
+    }
+    @keyframes bounce {
+      0%,100% { transform: rotate(45deg) translateY(0); }
+      50%      { transform: rotate(45deg) translateY(6px); }
+    }
+    .reveal {
+      opacity: 0; transform: translateY(32px);
+      transition: opacity .7s ease, transform .7s ease;
+    }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ══════════════════════════════════════════
+       RESPONSIVE
+    ══════════════════════════════════════════ */
+    @media (max-width: 900px) {
+      .about-grid, .contact-grid { grid-template-columns: 1fr; }
+      .about-badge { position: static; margin-top: 20px; display: inline-block; }
+      .footer-top { grid-template-columns: 1fr 1fr; }
+      .process-steps::before { display: none; }
+    }
+    @media (max-width: 640px) {
+      nav { padding: 0 4%; }
+      .nav-links { display: none; flex-direction: column; position: absolute; top: 70px; left: 0; right: 0; background: var(--bg2); border-bottom: 1px solid var(--border); padding: 20px 5%; gap: 16px; }
+      .nav-links.open { display: flex; }
+      .hamburger { display: flex; }
+      section { padding: 70px 4%; }
+      .footer-top { grid-template-columns: 1fr; }
+      .hero-buttons { flex-direction: column; align-items: center; }
+    }
+  </style>
 </head>
 <body>
 
-    <nav>
-        <div class="logo">GEROSO ELECTRONICS</div>
-        <div>Inicio | Servicios | Contacto</div>
-    </nav>
-
-    <header class="hero">
-        <h1>Bienvenidos a GEROSO ELECTRONICS</h1>
-        <p>Soluciones tecnológicas y componentes de vanguardia.</p>
-        <a href="#contacto" class="btn">Explorar Proyectos</a>
-    </header>
-
-    <div class="container">
-        <div class="card">
-            <h3>Reparación</h3>
-            <p>Diagnóstico y mantenimiento de equipos electrónicos con precisión profesional.</p>
-        </div>
-        <div class="card">
-            <h3>Diseño de Circuitos</h3>
-            <p>Creación de prototipos y placas personalizadas para tus ideas.</p>
-        </div>
-        <div class="card">
-            <h3>Componentes</h3>
-            <p>Venta y distribución de las mejores marcas del mercado tecnológico.</p>
-        </div>
+<!-- ══ NAV ══════════════════════════════════ -->
+<nav id="navbar">
+  <a href="#hero" class="nav-logo">
+    <img src="images/logo-color.jpeg" alt="Geroso Electronics Logo" />
+    <div>
+      <div class="nav-logo-text">GEROSO <span>ELECTRONICS</span></div>
+      <div class="nav-logo-sub">Buga, Colombia</div>
     </div>
+  </a>
+  <ul class="nav-links" id="nav-links">
+    <li><a href="#nosotros">Nosotros</a></li>
+    <li><a href="#servicios">Servicios</a></li>
+    <li><a href="#galeria">Galería</a></li>
+    <li><a href="#proceso">Proceso</a></li>
+    <li><a href="#contacto" class="nav-cta">Contáctanos</a></li>
+  </ul>
+  <div class="hamburger" id="hamburger" onclick="toggleMenu()">
+    <span></span><span></span><span></span>
+  </div>
+</nav>
 
-    <footer id="contacto">
-        <p>&copy; 2026 GEROSO ELECTRONICS. Casi todos los derechos reservados.</p>
-        <p>Email: contacto@geroso-electronics.com</p>
-    </footer>
+<!-- ══ HERO ══════════════════════════════════ -->
+<section id="hero">
+  <canvas id="circuit-canvas"></canvas>
+  <div class="hero-overlay"></div>
+  <div class="hero-content">
+    <div class="hero-badge">⚡ Ingeniería Electrónica · Buga, Colombia</div>
+    <h1 class="hero-title">
+      <span class="accent">GEROSO</span><br />
+      <span class="accent-o">ELECTRONICS</span>
+    </h1>
+    <p class="hero-sub">
+      Diseño y fabricación artesanal de bombillas LED, circuitos electrónicos<br />
+      y lámparas decorativas con tecnología de vanguardia.
+    </p>
+    <div class="hero-buttons">
+      <a href="#galeria" class="btn btn-primary">Ver Proyectos ↓</a>
+      <a href="#contacto" class="btn btn-outline">Solicitar Cotización</a>
+    </div>
+  </div>
+  <div class="hero-scroll">
+    <span>Desplazar</span>
+    <div class="scroll-arrow"></div>
+  </div>
+</section>
 
+<!-- ══ NOSOTROS ══════════════════════════════ -->
+<section id="nosotros">
+  <div class="reveal">
+    <span class="section-label">// Sobre Nosotros</span>
+    <h2 class="section-title">Tecnología hecha<br /><span class="accent">con precisión</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">
+      Somos un taller de ingeniería electrónica especializado en el diseño, fabricación y reparación
+      de soluciones de iluminación LED y circuitos electrónicos a medida,
+      con años de experiencia en Buga, Valle del Cauca.
+    </p>
+  </div>
+  <div class="about-grid reveal">
+    <div class="about-img-wrap">
+      <img src="images/lampara-decorativa.jpeg" alt="Lámpara decorativa artesanal" />
+      <div class="about-badge">
+        <div class="num">LED</div>
+        <div class="lbl">Tecnología</div>
+      </div>
+    </div>
+    <div>
+      <p style="font-size:.95rem; line-height:1.8; color:var(--text); margin-bottom:24px;">
+        Cada producto que fabricamos nace de un profundo conocimiento en electrónica y un compromiso
+        con la calidad artesanal. Desde circuitos con microcontroladores Arduino hasta lámparas
+        decorativas únicas con base en madera — cada proyecto es diseñado y ensamblado a mano.
+      </p>
+      <p style="font-size:.95rem; line-height:1.8; color:var(--text); margin-bottom:32px;">
+        Nos especializamos en soluciones de iluminación eficientes: bombillas LED de bajo consumo,
+        módulos LED personalizados y adaptadores inteligentes que alargan la vida útil de tus
+        instalaciones existentes.
+      </p>
+      <div class="about-stats">
+        <div class="stat-card">
+          <div class="num">LED</div>
+          <div class="lbl">Bajo consumo energético</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">100%</div>
+          <div class="lbl">Diseño artesanal</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">E27</div>
+          <div class="lbl">Compatible con bases estándar</div>
+        </div>
+        <div class="stat-card">
+          <div class="num">MCU</div>
+          <div class="lbl">Circuitos con microcontrolador</div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ SERVICIOS ══════════════════════════════ -->
+<section id="servicios">
+  <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+    <span class="section-label">// Nuestros Servicios</span>
+    <h2 class="section-title">¿Qué <span class="accent">fabricamos</span>?</h2>
+    <div class="divider" style="margin:20px auto;"></div>
+    <p class="section-desc" style="margin:0 auto;">
+      Soluciones electrónicas diseñadas y ensambladas con precisión de ingeniería.
+    </p>
+  </div>
+  <div class="services-grid">
+    <div class="service-card reveal">
+      <div class="service-icon">💡</div>
+      <h3>Bombillas LED</h3>
+      <p>Fabricamos bombillas LED de alta eficiencia energética con base E27, compatibles con instalaciones domésticas e industriales estándar. Larga vida útil y máxima luminosidad.</p>
+      <span class="service-tag">⚡ Bajo Consumo</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔌</div>
+      <h3>Adaptadores LED</h3>
+      <p>Adaptadores inteligentes que convierten tomas estándar en portalámparas, permitiendo reutilizar infraestructura existente con tecnología LED moderna.</p>
+      <span class="service-tag">🔧 Plug & Play</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">⚙️</div>
+      <h3>Circuitos Electrónicos</h3>
+      <p>Diseño y fabricación de circuitos a medida con microcontroladores Arduino, sensores de temperatura, módulos de control y sistemas embebidos para automatización.</p>
+      <span class="service-tag">🤖 Arduino / MCU</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🔆</div>
+      <h3>Módulos LED</h3>
+      <p>Módulos LED circulares con LEDs SMD y COB de alta potencia. Ideales para reemplazar bombillas convencionales en diversas aplicaciones de iluminación.</p>
+      <span class="service-tag">💫 Alta Potencia</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🏮</div>
+      <h3>Lámparas Decorativas</h3>
+      <p>Lámparas artesanales únicas con esfera de vidrio y base de madera natural. Combinan estética vintage con electrónica moderna, ideales como regalo o decoración.</p>
+      <span class="service-tag">✨ Artesanal</span>
+    </div>
+    <div class="service-card reveal">
+      <div class="service-icon">🛠️</div>
+      <h3>Reparación y Diagnóstico</h3>
+      <p>Diagnóstico y reparación de equipos electrónicos, fuentes de poder LED, controladores y circuitos. Servicio técnico especializado con años de experiencia.</p>
+      <span class="service-tag">🔬 Diagnóstico</span>
+    </div>
+  </div>
+</section>
+
+<!-- ══ GALERÍA ══════════════════════════════ -->
+<section id="galeria">
+  <div class="reveal">
+    <span class="section-label">// Galería de Proyectos</span>
+    <h2 class="section-title">Nuestro <span class="accent-o">trabajo</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Cada pieza diseñada y ensamblada en nuestro taller.</p>
+  </div>
+  <div class="gallery-filters reveal">
+    <button class="filter-btn active" data-filter="all">Todos</button>
+    <button class="filter-btn" data-filter="led">Bombillas LED</button>
+    <button class="filter-btn" data-filter="circuito">Circuitos</button>
+    <button class="filter-btn" data-filter="lampara">Lámparas</button>
+    <button class="filter-btn" data-filter="adaptador">Adaptadores</button>
+  </div>
+  <div class="gallery-grid reveal">
+    <div class="gallery-item" data-cat="lampara" onclick="openLightbox(this)">
+      <img src="images/lampara-decorativa.jpeg" alt="Lámpara decorativa con esfera de vidrio" />
+      <div class="gallery-caption">Lámpara Decorativa · Esfera + Base Madera</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="led" onclick="openLightbox(this)">
+      <img src="images/bombillas-led.jpeg" alt="Bombillas LED E27" />
+      <div class="gallery-caption">Bombillas LED E27 · Alta Eficiencia</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="led" onclick="openLightbox(this)">
+      <img src="images/bombilla-interior-smd.jpeg" alt="Interior bombilla LED SMD" />
+      <div class="gallery-caption">Módulo LED Interior · SMD</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="led" onclick="openLightbox(this)">
+      <img src="images/bombilla-interior-cob.jpeg" alt="Interior bombilla LED COB" />
+      <div class="gallery-caption">Módulo LED Interior · COB de Alta Potencia</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="circuito" onclick="openLightbox(this)">
+      <img src="images/circuito-arduino.jpeg" alt="Circuito Arduino Nano" />
+      <div class="gallery-caption">Circuito Arduino Nano · Sistema de Control</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="circuito" onclick="openLightbox(this)">
+      <img src="images/circuito-controlador.jpeg" alt="Circuito controlador electrónico" />
+      <div class="gallery-caption">Controlador Electrónico · Caja Compacta</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="adaptador" onclick="openLightbox(this)">
+      <img src="images/adaptadores.jpeg" alt="Adaptadores LED" />
+      <div class="gallery-caption">Adaptadores LED · Plug Estándar</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="led" onclick="openLightbox(this)">
+      <img src="images/bombilla-g4.jpeg" alt="Bombilla G4 LED" />
+      <div class="gallery-caption">Bombilla G4 LED · Reemplazo Compacto</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+    <div class="gallery-item" data-cat="circuito" onclick="openLightbox(this)">
+      <img src="images/modulo-sensor.jpeg" alt="Módulo sensor electrónico" />
+      <div class="gallery-caption">Módulo Sensor · Caja Compacta PCB</div>
+      <div class="gallery-zoom">🔍</div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ PROCESO ══════════════════════════════ -->
+<section id="proceso">
+  <div class="reveal" style="text-align:center; max-width:600px; margin:0 auto;">
+    <span class="section-label">// Proceso de Trabajo</span>
+    <h2 class="section-title">Cómo <span class="accent">trabajamos</span></h2>
+    <div class="divider" style="margin:20px auto;"></div>
+  </div>
+  <div class="process-steps reveal">
+    <div class="step">
+      <div class="step-num">01</div>
+      <h4>Consulta</h4>
+      <p>Analizamos tu necesidad específica y definimos los requerimientos técnicos del proyecto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">02</div>
+      <h4>Diseño</h4>
+      <p>Diseñamos el circuito o producto a medida, seleccionando los componentes óptimos.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">03</div>
+      <h4>Ensamblaje</h4>
+      <p>Ensamblamos y soldamos cada componente con cuidado artesanal en nuestro taller.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">04</div>
+      <h4>Pruebas</h4>
+      <p>Realizamos pruebas eléctricas y funcionales completas antes de entregar el producto.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">05</div>
+      <h4>Entrega</h4>
+      <p>Entregamos tu producto listo para funcionar con soporte técnico incluido.</p>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACTO ══════════════════════════════ -->
+<section id="contacto">
+  <div class="reveal">
+    <span class="section-label">// Contacto</span>
+    <h2 class="section-title">Hablemos de tu <span class="accent">proyecto</span></h2>
+    <div class="divider"></div>
+    <p class="section-desc">Estamos en Buga, Colombia. Contáctanos para cotizaciones y consultas técnicas.</p>
+  </div>
+  <div class="contact-grid reveal">
+    <div>
+      <ul class="contact-info-list">
+        <li>
+          <div class="contact-icon">📍</div>
+          <div>
+            <div class="lbl">Ubicación</div>
+            <div class="val">Guadalajara de Buga, Valle del Cauca, Colombia</div>
+          </div>
+        </li>
+        <li>
+          <div class="contact-icon">📱</div>
+          <div>
+            <div class="lbl">WhatsApp / Teléfono</div>
+            <div class="val">+57 3002761614</div>
+          </div>
+        </li>
+        <li>
+          <div class="contact-icon">✉️</div>
+          <div>
+            <div class="lbl">Correo Electrónico</div>
+            <div class="val">germanosoriocortes@gmail.com</div>
+          </div>
+        </li>
+        <li>
+          <div class="contact-icon">⏰</div>
+          <div>
+            <div class="lbl">Horario</div>
+            <div class="val">Lunes – Sábado · 8:00 AM – 6:00 PM</div>
+          </div>
+        </li>
+      </ul>
+    </div>
+    <div class="contact-form">
+      <h3>Envíanos un mensaje</h3>
+      <div class="form-group">
+        <label>Nombre completo</label>
+        <input type="text" placeholder="Tu nombre" />
+      </div>
+      <div class="form-group">
+        <label>Correo electrónico</label>
+        <input type="email" placeholder="tu@correo.com" />
+      </div>
+      <div class="form-group">
+        <label>Servicio de interés</label>
+        <select>
+          <option value="">Seleccionar...</option>
+          <option>Bombillas LED</option>
+          <option>Adaptadores LED</option>
+          <option>Circuitos Electrónicos</option>
+          <option>Lámpara Decorativa</option>
+          <option>Reparación / Diagnóstico</option>
+          <option>Otro</option>
+        </select>
+      </div>
+      <div class="form-group">
+        <label>Mensaje</label>
+        <textarea placeholder="Describe tu proyecto o consulta técnica..."></textarea>
+      </div>
+      <button class="btn-submit" onclick="sendWhatsApp()">Enviar por WhatsApp ⚡</button>
+    </div>
+  </div>
+</section>
+
+<!-- ══ FOOTER ══════════════════════════════ -->
+<footer>
+  <div class="footer-top">
+    <div class="footer-brand">
+      <img src="images/logo-bw.jpeg" alt="Geroso Electronics" style="border-radius:8px;" />
+      <p>Ingeniería electrónica artesanal en Buga, Colombia. Diseño y fabricación de bombillas LED, circuitos electrónicos y lámparas decorativas.</p>
+    </div>
+    <div class="footer-col">
+      <h4>Navegación</h4>
+      <ul>
+        <li><a href="#nosotros">Nosotros</a></li>
+        <li><a href="#servicios">Servicios</a></li>
+        <li><a href="#galeria">Galería</a></li>
+        <li><a href="#proceso">Proceso</a></li>
+        <li><a href="#contacto">Contacto</a></li>
+      </ul>
+    </div>
+    <div class="footer-col">
+      <h4>Servicios</h4>
+      <ul>
+        <li><a href="#servicios">Bombillas LED</a></li>
+        <li><a href="#servicios">Adaptadores</a></li>
+        <li><a href="#servicios">Circuitos</a></li>
+        <li><a href="#servicios">Lámparas Deco</a></li>
+        <li><a href="#servicios">Reparaciones</a></li>
+      </ul>
+    </div>
+  </div>
+  <div class="footer-bottom">
+    <p>© 2025 GEROSO Electronics · Buga, Colombia · Hecho con <span>♥</span> y electrónica</p>
+    <div class="social-links">
+      <a href="#" title="Facebook">📘</a>
+      <a href="#" title="Instagram">📷</a>
+      <a href="#" title="WhatsApp">💬</a>
+    </div>
+  </div>
+</footer>
+
+<!-- ══ LIGHTBOX ══════════════════════════════ -->
+<div id="lightbox" onclick="closeLightbox(event)">
+  <span id="lightbox-close" onclick="closeLightbox()">✕</span>
+  <img id="lightbox-img" src="" alt="" />
+  <div id="lightbox-caption"></div>
+</div>
+
+<!-- ══ SCRIPTS ══════════════════════════════ -->
+<script>
+  /* ── NAV ── */
+  function toggleMenu() {
+    document.getElementById('nav-links').classList.toggle('open');
+  }
+  window.addEventListener('scroll', () => {
+    const nav = document.getElementById('navbar');
+    nav.style.background = window.scrollY > 60
+      ? 'rgba(7,12,24,0.97)'
+      : 'rgba(7,12,24,0.85)';
+  });
+
+  /* ── CIRCUIT CANVAS ── */
+  (function() {
+    const canvas = document.getElementById('circuit-canvas');
+    const ctx = canvas.getContext('2d');
+    let nodes = [], lines = [], W, H;
+
+    function resize() {
+      W = canvas.width  = canvas.offsetWidth;
+      H = canvas.height = canvas.offsetHeight;
+    }
+    resize();
+    window.addEventListener('resize', () => { resize(); init(); });
+
+    function rand(a, b) { return a + Math.random() * (b - a); }
+
+    function init() {
+      nodes = []; lines = [];
+      const count = Math.floor((W * H) / 14000);
+      for (let i = 0; i < count; i++) {
+        nodes.push({
+          x: rand(0, W), y: rand(0, H),
+          vx: rand(-.15, .15), vy: rand(-.15, .15),
+          r: rand(2, 4),
+          pulse: rand(0, Math.PI * 2)
+        });
+      }
+    }
+    init();
+
+    let t = 0;
+    function draw() {
+      ctx.clearRect(0, 0, W, H);
+      t += 0.012;
+
+      nodes.forEach(n => {
+        n.x += n.vx; n.y += n.vy;
+        if (n.x < 0 || n.x > W) n.vx *= -1;
+        if (n.y < 0 || n.y > H) n.vy *= -1;
+      });
+
+      for (let i = 0; i < nodes.length; i++) {
+        for (let j = i + 1; j < nodes.length; j++) {
+          const a = nodes[i], b = nodes[j];
+          const dx = b.x - a.x, dy = b.y - a.y;
+          const dist = Math.sqrt(dx*dx + dy*dy);
+          if (dist < 160) {
+            const alpha = (1 - dist/160) * 0.18;
+            ctx.beginPath();
+            ctx.moveTo(a.x, a.y);
+            /* 90-degree circuit-board style lines */
+            const mx = a.x + (b.x - a.x) * 0.5;
+            ctx.lineTo(mx, a.y);
+            ctx.lineTo(mx, b.y);
+            ctx.lineTo(b.x, b.y);
+            ctx.strokeStyle = `rgba(0,200,255,${alpha})`;
+            ctx.lineWidth = 0.8;
+            ctx.stroke();
+          }
+        }
+      }
+
+      nodes.forEach(n => {
+        const pulse = (Math.sin(t + n.pulse) + 1) * 0.5;
+        const glow = ctx.createRadialGradient(n.x, n.y, 0, n.x, n.y, n.r * 4);
+        glow.addColorStop(0, `rgba(0,200,255,${0.6 * pulse})`);
+        glow.addColorStop(1, 'transparent');
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * 4, 0, Math.PI * 2);
+        ctx.fillStyle = glow; ctx.fill();
+        ctx.beginPath();
+        ctx.arc(n.x, n.y, n.r * pulse + 1, 0, Math.PI * 2);
+        ctx.fillStyle = `rgba(0,200,255,${0.8 * pulse})`;
+        ctx.fill();
+      });
+
+      requestAnimationFrame(draw);
+    }
+    draw();
+  })();
+
+  /* ── GALLERY FILTER ── */
+  document.querySelectorAll('.filter-btn').forEach(btn => {
+    btn.addEventListener('click', function() {
+      document.querySelectorAll('.filter-btn').forEach(b => b.classList.remove('active'));
+      this.classList.add('active');
+      const filter = this.dataset.filter;
+      document.querySelectorAll('.gallery-item').forEach(item => {
+        if (filter === 'all' || item.dataset.cat === filter) {
+          item.style.display = '';
+          item.style.opacity = '0';
+          setTimeout(() => { item.style.transition = 'opacity .4s'; item.style.opacity = '1'; }, 10);
+        } else {
+          item.style.display = 'none';
+        }
+      });
+    });
+  });
+
+  /* ── LIGHTBOX ── */
+  function openLightbox(el) {
+    const img = el.querySelector('img');
+    const cap = el.querySelector('.gallery-caption');
+    document.getElementById('lightbox-img').src = img.src;
+    document.getElementById('lightbox-img').alt = img.alt;
+    document.getElementById('lightbox-caption').textContent = cap ? cap.textContent : '';
+    document.getElementById('lightbox').classList.add('open');
+    document.body.style.overflow = 'hidden';
+  }
+  function closeLightbox(e) {
+    if (!e || e.target.id === 'lightbox' || e.target.id === 'lightbox-close') {
+      document.getElementById('lightbox').classList.remove('open');
+      document.body.style.overflow = '';
+    }
+  }
+  document.addEventListener('keydown', e => { if (e.key === 'Escape') closeLightbox({ target: { id: 'lightbox' } }); });
+
+  /* ── SCROLL REVEAL ── */
+  const observer = new IntersectionObserver(entries => {
+    entries.forEach(e => { if (e.isIntersecting) { e.target.classList.add('visible'); } });
+  }, { threshold: 0.12 });
+  document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+  /* ── WHATSAPP BUTTON ── */
+  function sendWhatsApp() {
+    const name    = document.querySelector('.contact-form input[type=text]').value.trim();
+    const email   = document.querySelector('.contact-form input[type=email]').value.trim();
+    const service = document.querySelector('.contact-form select').value;
+    const message = document.querySelector('.contact-form textarea').value.trim();
+    const phone   = '57TUNUMERODETELEFONO'; // ← Reemplaza con tu número sin +
+    const text = encodeURIComponent(
+      `Hola GEROSO Electronics!\n\n` +
+      `*Nombre:* ${name || 'N/A'}\n` +
+      `*Email:* ${email || 'N/A'}\n` +
+      `*Servicio:* ${service || 'N/A'}\n\n` +
+      `*Mensaje:* ${message || 'Sin mensaje'}`
+    );
+    window.open(`https://wa.me/${phone}?text=${text}`, '_blank');
+  }
+</script>
 </body>
 </html>
